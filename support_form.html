@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact Support - SocialPro Hub</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    main {
+      max-width: 600px;
+      margin: 40px auto;
+      background: #f7f7f7;
+      padding: 30px;
+      border-radius: 8px;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: 600;
+    }
+    input, textarea, button {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      margin-top: 8px;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+    button {
+      background: #0b74de;
+      color: white;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    .success-message {
+      margin-top: 20px;
+      color: green;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Contact Support</h1>
+    <nav>
+      <a href="index.html">Home</a> |
+      <a href="user_dashboard.html">User Dashboard</a> |
+      <a href="whatsapp_telegram_manager.html">WA/Telegram Manager</a>
+    </nav>
+  </header>
+
+  <main>
+    <form id="supportForm" onsubmit="handleSubmit(event)">
+      <label for="name">Your Name</label>
+      <input type="text" id="name" placeholder="Enter your full name" required />
+
+      <label for="email">Email Address</label>
+      <input type="email" id="email" placeholder="Enter your email" required />
+
+      <label for="issue">Describe Your Issue or Request</label>
+      <textarea id="issue" rows="6" placeholder="Write your problem or request here..." required></textarea>
+
+      <button type="submit">Send Request</button>
+    </form>
+
+    <div class="success-message" id="successMsg" style="display:none;">
+      Thanks for contacting us! We'll get back to you soon.
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 SocialPro Hub. Built by Team CSB.</p>
+  </footer>
+
+  <script>
+    function handleSubmit(event) {
+      event.preventDefault();
+      // Normally here you'd send data via AJAX or backend API
+      document.getElementById('supportForm').reset();
+      document.getElementById('successMsg').style.display = 'block';
+    }
+  </script>
+</body>
+</html>
