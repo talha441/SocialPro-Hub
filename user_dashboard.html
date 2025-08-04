@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>User Dashboard - SocialPro Hub</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    .dashboard {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 20px;
+      background: #f9f9f9;
+      border-radius: 8px;
+    }
+    .profile {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+    .avatar {
+      background: #0b74de;
+      color: white;
+      font-weight: 700;
+      font-size: 28px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      user-select: none;
+    }
+    .balance-box {
+      background: #0b74de;
+      color: white;
+      padding: 15px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      width: fit-content;
+    }
+    .hidden-balance {
+      letter-spacing: 5px;
+      font-size: 24px;
+      user-select: none;
+    }
+    .referral {
+      margin-top: 20px;
+    }
+    .withdraw-section {
+      margin-top: 40px;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+    }
+    .withdraw-section h3 {
+      margin-bottom: 15px;
+    }
+    label {
+      display: block;
+      margin-top: 12px;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+    input, select, button {
+      width: 100%;
+      padding: 8px 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+    button {
+      background: #0b74de;
+      color: white;
+      border: none;
+      margin-top: 18px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>User Dashboard</h1>
+    <nav>
+      <a href="index.html">Home</a> |
+      <a href="account_recovery.html">Account Recovery</a> |
+      <a href="page_manager.html">Page Manager</a> |
+      <a href="youtube_helper.html">YouTube Helper</a> |
+      <a href="whatsapp_telegram_manager.html">WA/Telegram Manager</a>
+    </nav>
+  </header>
+
+  <section class="dashboard">
+    <div class="profile">
+      <div class="avatar" id="userAvatar">AT</div>
+      <div>
+        <h2>Welcome, Abu Talha</h2>
+        <div class="balance-box" id="balanceBox" onclick="toggleBalance()">
+          Balance: <span id="balanceValue" class="hidden-balance">*******</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="referral">
+      <h3>Your Referral Link:</h3>
+      <input type="text" readonly value="https://socialprohub.com/?ref=ABUTALHA" />
+      <p>You have referred <strong>5</strong> users and earned <strong>5.0</strong> bonus points.</p>
+    </div>
+
+    <div class="withdraw-section">
+      <h3>Withdraw Balance</h3>
+      <form id="withdrawForm" onsubmit="handleWithdraw(event)">
+        <label for="gateway">Select Gateway</label>
+        <select id="gateway" required>
+          <option value="">-- Select --</option>
+          <option value="bkash">bKash</option>
+          <option value="nagad">Nagad</option>
+          <option value="rocket">Rocket</option>
+          <option value="paypal">PayPal</option>
+          <option value="payoneer">Payoneer</option>
+        </select>
+
+        <label for="amount">Amount to Withdraw</label>
+        <input type="number" id="amount" min="10" placeholder="Minimum 10" required />
+
+        <label for="accountNumber">Account Number</label>
+        <input type="text" id="accountNumber" placeholder="Enter your account number" required />
+
+        <button type="submit">Request Withdrawal</button>
+      </form>
+      <div id="withdrawMessage" style="margin-top:15px;color:green;"></div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 SocialPro Hub. Built by Team CSB.</p>
+  </footer>
+
+  <script>
+    let balanceHidden = true;
+    function toggleBalance() {
+      const balanceEl = document.getElementById('balanceValue');
+      if(balanceHidden){
+        balanceEl.textContent = '120.50';
+      } else {
+        balanceEl.textContent = '*******';
+      }
+      balanceHidden = !balanceHidden;
+    }
+
+    function handleWithdraw(event) {
+      event.preventDefault();
+      const gateway = document.getElementById('gateway').value;
+      const amount = document.getElementById('amount').value;
+      const account = document.getElementById('accountNumber').value;
+
+      if(!gateway || !amount || !account){
+        alert('Please fill all fields!');
+        return;
+      }
+      // Here you can add actual form submission logic (e.g. AJAX or API call)
+
+      document.getElementById('withdrawMessage').textContent = `Withdrawal request of ${amount} via ${gateway} submitted successfully!`;
+      event.target.reset();
+    }
+  </script>
+</body>
+</html>
