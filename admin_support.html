@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin Support Center - SocialPro Hub</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    body {
+      max-width: 900px;
+      margin: 30px auto;
+      font-family: Arial, sans-serif;
+    }
+    h1 {
+      margin-bottom: 20px;
+      color: #0b74de;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 30px;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: left;
+    }
+    th {
+      background: #0b74de;
+      color: white;
+    }
+    .status-pending {
+      color: orange;
+      font-weight: 700;
+    }
+    .status-completed {
+      color: green;
+      font-weight: 700;
+    }
+    button {
+      background: #0b74de;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Admin Support Center</h1>
+    <nav>
+      <a href="index.html">Home</a> |
+      <a href="user_dashboard.html">User Dashboard</a> |
+      <a href="whatsapp_telegram_manager.html">WA/Telegram Manager</a>
+    </nav>
+  </header>
+
+  <section>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>User Name</th>
+          <th>Email</th>
+          <th>Issue/Request</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="requestsTableBody">
+        <!-- Example row -->
+        <tr>
+          <td>001</td>
+          <td>Abu Talha</td>
+          <td>abu@example.com</td>
+          <td>Can't recover Facebook account</td>
+          <td class="status-pending">Pending</td>
+          <td><button onclick="markCompleted(this)">Mark Complete</button></td>
+        </tr>
+        <tr>
+          <td>002</td>
+          <td>Rina Islam</td>
+          <td>rina@example.com</td>
+          <td>Need help with YouTube optimization</td>
+          <td class="status-completed">Completed</td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 SocialPro Hub. Built by Team CSB.</p>
+  </footer>
+
+  <script>
+    function markCompleted(button) {
+      const row = button.closest('tr');
+      const statusCell = row.querySelector('td:nth-child(5)');
+      statusCell.textContent = 'Completed';
+      statusCell.className = 'status-completed';
+      button.remove();
+      // Optionally, here you can also update backend via AJAX or API call
+      alert('Request marked as completed.');
+    }
+  </script>
+</body>
+</html>
